@@ -1,0 +1,12 @@
+library(caTools)
+library(nnet)
+
+set.seed(123)
+split <- sample.split(iris$Species, 0.8)
+train_data <- iris[split, ]
+test_data <- iris[!split, ]
+
+logistic_model <- multinom(Species ~ Petal.Width + Petal.Length, data = train_data)
+confusion_matrix <- table(predict(logistic_model, newdata = test_data, type = "class"), test_data$Species)
+
+print(confusion_matrix)
