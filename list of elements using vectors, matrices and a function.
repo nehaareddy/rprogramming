@@ -1,0 +1,10 @@
+# Create the list
+my_list <- list(
+  vector = c(1, 2, 3, 4, 5),
+  characters = c('a', 'b', 'c', 'd', 'e'),
+  matrix = matrix(1:9, nrow = 3, ncol = 3),
+  my_function = function(x) { return(x^2) }
+)
+
+# Print the content of the list
+print(my_list)
