@@ -1,0 +1,4 @@
+data(women)
+str(women)
+height_factor <- cut(women$height, breaks = 3, labels = c("Short", "Medium", "Tall"))
+print(height_factor)
