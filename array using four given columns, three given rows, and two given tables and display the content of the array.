@@ -1,0 +1,15 @@
+# Define the data for the array
+column1 <- c(1, 2, 3)
+column2 <- c(4, 5, 6)
+column3 <- c(7, 8, 9)
+column4 <- c(10, 11, 12)
+
+# Create the array
+my_array <- array(data = c(column1, column2, column3, column4),
+                  dim = c(3, 4, 2),
+                  dimnames = list(c("Row1", "Row2", "Row3"),
+                                  c("Column1", "Column2", "Column3", "Column4"),
+                                  c("Table1", "Table2")))
+
+# Display the content of the array
+print(my_array)
