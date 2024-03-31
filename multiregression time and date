@@ -1,0 +1,19 @@
+data <- data.frame(
+  Time = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+  Diet = c(1, 1, 2, 2, 3, 3, 1, 2, 3, 1),
+  Weight = c(2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 3.0, 3.5, 4.0, 3.5)
+)
+model <- lm(Weight ~ Time + Diet, data=data)
+summary(model)
+
+
+
+new_data <- data.frame(Time = 10, Diet = 1)
+predicted_weight <- predict(model, newdata=new_data)
+print(predicted_weight)
+
+
+
+predictions <- predict(model)
+mse <- mean((predictions - data$Weight)^2)
+print(paste("Mean Squared Error:", mse))
