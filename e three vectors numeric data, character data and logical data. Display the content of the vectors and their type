@@ -1,0 +1,8 @@
+# Create vectors
+numeric_vector <-
+ 1:5
+character_vector <- c("apple", "banana", "orange", "grape", "kiwi")
+logical_vector <- c(TRUE, FALSE, TRUE, TRUE, FALSE)
+
+# Display content and types
+sapply(list(numeric_vector, character_vector, logical_vector), function(x) {print(x); print(class(x))})
