@@ -1,0 +1,80 @@
+# Load the dataset
+data("USArrests")
+
+# Summary of the dataset
+summary(USArrests)
+
+# Number of features and their types
+num_features <- ncol(USArrests)
+feature_names <- colnames(USArrests)
+feature_types <- sapply(USArrests, class)
+print(paste("Number of features:", num_features))
+print(paste("Feature names:", feature_names))
+print(paste("Feature types:", feature_types))
+
+# Number of records for each feature
+num_records <- sapply(USArrests, length)
+print(paste("Number of records for each feature:", num_records))
+
+# Statistical features of data
+stat_features <- sapply(USArrests, function(x) c(min(x), mean(x), median(x), max(x)))
+print("Statistical features of data:")
+print(stat_features)
+
+# Find the state with the largest total number of rape
+state_max_rape <- names(USArrests$Rape)[which.max(USArrests$Rape)]
+print(paste("State with the largest total number of rape:", state_max_rape))
+
+# Find the states with max and min crime rates for murder
+state_max_murder <- names(USArrests$Murder)[which.max(USArrests$Murder)]
+state_min_murder <- names(USArrests$Murder)[which.min(USArrests$Murder)]
+print(paste("State with the max crime rate for murder:", state_max_murder))
+print(paste("State with the min crime rate for murder:", state_min_murder))
+
+
+
+
+
+
+
+
+
+
+# Calculate the correlation matrix
+correlation_matrix <- cor(USArrests)
+
+# Print the correlation matrix
+print("Correlation among the features:")
+print(correlation_matrix)
+
+# Find the states with assault arrests more than median of the country
+median_assault <- median(USArrests$Assault)
+states_above_median <- names(USArrests$Assault[USArrests$Assault > median_assault])
+print(paste("States with assault arrests more than median of the country:", states_above_median))
+
+# Find the states in the bottom 25% of murder
+bottom_25_percent <- quantile(USArrests$Murder, probs = 0.25)
+states_bottom_25_percent <- names(USArrests$Murder[USArrests$Murder < bottom_25_percent])
+print(paste("States in the bottom 25% of murder:", states_bottom_25_percent))
+
+
+
+
+
+
+
+
+# Histogram and density plot of murder arrests
+hist(USArrests$Murder, main = "Histogram of Murder Arrests", xlab = "Murder Arrests", col = "lightblue")
+plot(density(USArrests$Murder), main = "Density Plot of Murder Arrests", xlab = "Murder Arrests", col = "blue")
+
+# Scatter plot with murder arrest rate and proportion of urban population
+plot(USArrests$UrbanPop, USArrests$Murder, main = "Murder Arrest Rate vs Urban Population",
+     xlab = "Proportion of Urban Population", ylab = "Murder Arrest Rate", col = "blue")
+points(USArrests$UrbanPop, USArrests$Murder, col = USArrests$Assault, pch = 19)
+legend("topright", legend = levels(USArrests$Assault), col = 1:length(levels(USArrests$Assault)), pch = 19, title = "Assault Arrest Rates")
+
+# Bar graph of murder rate for each state
+barplot(USArrests$Murder, names.arg = rownames(USArrests), las = 2, col = "lightblue", main = "Murder Rate by US State", xlab = "US State", ylab = "Murder Rate")
+
+
